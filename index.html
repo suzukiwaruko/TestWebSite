@@ -14,18 +14,46 @@
     document.write("<p> javascript実行!!");
   </script>
 
+<!--
   <script>
     window.alert("I am test.");
   </script>
+-->
 
-  <script>
 <!--
+  <script>
 	fetch("https://vrmanscg02-fj.ddns.net/?cmd=decode&lang=0&arg=%E3%81%BE%E3%81%91%E3%81%88%E3%81%A6%E3%81%82%E3%81%82%E3%81%AF%E3%81%99")
 	  .then(response => response.text())
 	  .then(html => {
 	    console.log(html); // HTMLの文字列
 	  });
+  </script>
 -->
+
+  <script>
+	//var url = location.search;
+	//document.getElementById("urlparam").innerHTML = url;
+
+	let url_string = location.href;
+	let url = new URL(url_string);
+	console.log("url=" + url);
+
+	let cmd=url.searchParams.get("cmd");
+	let arg1=url.searchParams.get("arg1");
+	let arg2=url.searchParams.get("arg2");
+	let arg3=url.searchParams.get("arg3");
+
+	console.log("cmd=" + cmd);
+	console.log("arg1=" + arg1);
+	console.log("arg2=" + arg2);
+	console.log("arg3=" + arg3);
+
+	let targetUrl="https://vrmanscg.com/03R/index.php?cmd=" + cmd + "&arg1=" + arg1 + "&arg2=" + arg2 + "&arg3=" + arg3;
+	fetch(targetUrl)
+	  .then(response => response.text())
+	  .then(html => {
+	    console.log(html); // HTMLの文字列
+	  });
   </script>
 
 </body>
